@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理员验证 - MC Archive</title>
+    <link rel="stylesheet" href="admin/style.css">
+</head>
+<body class="admin-login-body">
+    <div class="admin-login-container">
+        <div class="admin-login-card">
+            <div class="admin-login-header">
+                <span class="admin-logo">🛡️ MC Archive</span>
+                <h1>管理员验证</h1>
+                <p class="admin-login-sub">请上传管理员密钥文件以进入后台</p>
+            </div>
+
+            <div class="admin-login-form">
+                <div class="file-drop-zone" id="dropZone">
+                    <div class="drop-zone-content">
+                        <span class="drop-icon">📎</span>
+                        <p>拖拽密钥文件到此处，或点击选择</p>
+                        <small>需要 <code>admin.key</code> 文件</small>
+                    </div>
+                    <input type="file" id="keyFile" accept=".key" hidden>
+                </div>
+
+                <div class="file-info" id="fileInfo" style="display:none;">
+                    <span class="file-name"></span>
+                    <span class="file-status"></span>
+                </div>
+
+                <button class="admin-btn admin-btn-primary" id="verifyBtn" disabled>
+                    验证并进入
+                </button>
+
+                <div class="admin-login-hint">
+                    <p>🔑 密钥文件说明：</p>
+                    <ul>
+                        <li>文件名必须为 <code>admin.key</code></li>
+                        <li>文件内容需包含管理员令牌</li>
+                        <li>请联系站长获取密钥文件</li>
+                    </ul>
+                </div>
+
+                <div class="admin-login-footer">
+                    <a href="index.html">← 返回用户端</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // 空壳验证逻辑
+    const VALID_FILENAME = 'admin.key';
+    const VALID_CONTENT_PREFIX = 'MC-ADMIN-'; // 空壳阶段：文件内容以这个开头就算通过
+
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('keyFile');
+    const fileInfo = document.getElementById('fileInfo');
+    const verifyBtn = document.getElementById('verifyBtn');
+    const fileNameSpan = fileInfo.querySelector('.file-name');
+    const fileStatusSpan = fileInfo.querySelector('.file-status');
+
+    let uploadedFile = null;
+
+    // 点击选择文件
+    dropZone.addEventListener('click', () => fileInput.click());
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('drag-over');
+    });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('drag-over');
+        if (e.dataTransfer.files.length > 0) {
+            handleFile(e.dataTransfer.files[0]);
+        }
+    });
+    fileInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) handleFile(e.target.files[0]);
+    });
+
+    function handleFile(file) {
+        uploadedFile = file;
+        fileNameSpan.textContent = file.name;
+
+        // 空壳校验：检查文件名
+        if (file.name === VALID_FILENAME) {
+            fileStatusSpan.textContent = '✅ 文件名正确';
+            fileStatusSpan.className = 'file-status ok';
+            verifyBtn.disabled = false;
+        } else {
+            fileStatusSpan.textContent = '❌ 文件名不正确（需要 admin.key）';
+            fileStatusSpan.className = 'file-status error';
+            verifyBtn.disabled = true;
+        }
+
+        fileInfo.style.display = 'flex';
+        dropZone.style.display = 'none';
+    }
+
+    // 验证按钮
+    verifyBtn.addEventListener('click', () => {
+        if (!uploadedFile) return;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const content = e.target.result;
+
+            // 空壳阶段：检查文件内容前缀
+            if (content.trim().startsWith(VALID_CONTENT_PREFIX)) {
+                // 验证通过 → 存标记 → 跳转
+                localStorage.setItem('mc_admin_auth', 'true');
+                localStorage.setItem('mc_admin_user', 'admin');
+                localStorage.setItem('mc_admin_login_time', Date.now().toString());
+                window.location.href = 'admin/index.html';
+            } else {
+                alert('密钥文件内容无效！\n空壳阶段：文件内容需以 "MC-ADMIN-" 开头\n\n（正式版将对接后端验证）');
+            }
+        };
+        reader.readAsText(uploadedFile);
+    });
+
+    // 已有登录状态直接跳转
+    if (localStorage.getItem('mc_admin_auth') === 'true') {
+        window.location.href = 'admin/index.html';
+    }
+    </script>
+</body>
+</html>

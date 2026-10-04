@@ -3,101 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>浏览 - MC 档案馆</title>
+    <title>浏览 - MC Archive</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <canvas id="particles"></canvas>
-
     <header>
-        <div class="logo">
-            <span class="logo-block">🟩</span>
-            <span class="logo-text">MC档案馆</span>
-        </div>
+        <div class="logo">⛏️ MC Archive</div>
         <nav>
             <a href="index.html">首页</a>
             <a href="browse.html" class="active">浏览</a>
             <a href="upload.html">上传</a>
-            <a href="about.html">关于</a>
-            <button id="musicBtn" class="music-btn" title="背景音乐开关">
-                <span id="musicIcon">🔇</span>
-            </button>
+            <a href="#">登录</a>
         </nav>
     </header>
 
     <main class="browse-page">
-        <div class="page-header">
-            <h1>🔍 浏览内容</h1>
-            <p class="subtitle">发现社区分享的存档与 Mod</p>
-        </div>
-
+        <h1>浏览存档与 Mod</h1>
+        
         <div class="filters">
-            <div class="search-box">
-                <span>🔍</span>
-                <input type="text" placeholder="搜索存档或 Mod..." disabled>
-            </div>
+            <input type="text" placeholder="搜索..." class="search-box" disabled>
             <select class="filter-select" disabled>
                 <option>全部类型</option>
-                <option>🌍 存档</option>
-                <option>🔧 Mod</option>
+                <option>存档</option>
+                <option>Mod</option>
             </select>
             <select class="filter-select" disabled>
                 <option>全部版本</option>
                 <option>1.20.4</option>
                 <option>1.19.2</option>
-                <option>1.12.2</option>
-            </select>
-            <select class="filter-select" disabled>
-                <option>排序方式</option>
-                <option>最新上传</option>
-                <option>最多下载</option>
-                <option>最多点赞</option>
             </select>
         </div>
 
-        <div class="content-tabs">
-            <button class="content-tab active">全部</button>
-            <button class="content-tab">🌍 存档</button>
-            <button class="content-tab">🔧 Mod</button>
-        </div>
-
-        <!-- 空状态 -->
-        <div class="empty-state">
-            <div class="empty-chest">📭</div>
-            <h3>暂无内容</h3>
-            <p>还没有人上传存档或 Mod</p>
-            <p class="empty-hint">上传功能尚未启用，这里是预留的列表位置</p>
-            <a href="upload.html" class="btn btn-stone">📤 去上传（暂未启用）</a>
-        </div>
-
-        <!-- 示例卡片（注释状态，上传功能做好后可取消注释使用） -->
-        <!--
-        <div class="card-grid">
-            <div class="content-card">
-                <div class="card-banner world-banner">🌍</div>
-                <div class="card-body">
-                    <h4>我的生存世界 v2</h4>
-                    <p class="card-meta">1.20.4 · 生存模式 · Java版</p>
-                    <div class="card-stats">
-                        <span>🌱 种子: 123456789</span>
-                        <span>📥 128 下载</span>
-                    </div>
-                    <button class="btn btn-stone btn-sm">查看详情</button>
-                </div>
+        <div class="content-grid">
+            <!-- 空状态提示 -->
+            <div class="empty-state">
+                <p>📭 暂无内容</p>
+                <p>上传功能尚未启用，这里是预留的列表位置</p>
             </div>
         </div>
-        -->
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <p>⛏️ MC档案馆 · 由社区驱动的 Minecraft 存档与 Mod 分享平台</p>
-        </div>
-    </footer>
-
-    <audio id="bgm" loop preload="none">
-        <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_7e97b9e6d5.mp3" type="audio/mpeg">
-    </audio>
     <script src="script.js"></script>
 </body>
 </html>

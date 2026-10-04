@@ -3,124 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MC 档案馆 - Minecraft 存档与 Mod 分享</title>
+    <title>MC Archive - Minecraft 存档与 Mod 分享</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- 方块粒子背景 -->
-    <canvas id="particles"></canvas>
-
-    <!-- 顶部导航 -->
     <header>
-        <div class="logo">
-            <span class="logo-block">🟩</span>
-            <span class="logo-text">MC档案馆</span>
-        </div>
+        <div class="logo">⛏️ MC Archive</div>
         <nav>
-            <a href="index.html" class="active">首页</a>
+            <a href="index.html">首页</a>
             <a href="browse.html">浏览</a>
             <a href="upload.html">上传</a>
-            <a href="about.html">关于</a>
-            <button id="musicBtn" class="music-btn" title="背景音乐开关">
-                <span id="musicIcon">🔇</span>
-            </button>
+            <a href="#">登录</a>
         </nav>
     </header>
 
-    <!-- 英雄区 -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="title-glitch" data-text="存档 · Mod · 数据">存档 · Mod · 数据</h1>
-            <p class="subtitle">在这里分享你的 Minecraft 世界，一键解析种子、坐标、游戏模式</p>
+    <main>
+        <section class="hero">
+            <h1>分享你的 Minecraft 世界与 Mod</h1>
+            <p>上传存档、分享 Mod、查看游戏数据 —— 完全免费，自主搭建</p>
             <div class="hero-buttons">
-                <a href="browse.html" class="btn btn-primary">🔍 浏览内容</a>
-                <a href="upload.html" class="btn btn-stone">📤 立即上传</a>
+                <a href="browse.html" class="btn">浏览内容</a>
+                <a href="upload.html" class="btn btn-outline">立即上传</a>
             </div>
-        </div>
-        <div class="hero-mascot">
-            <div class="pixel-cube">
-                <div class="cube-face front">草</div>
-                <div class="cube-face back"></div>
-                <div class="cube-face right"></div>
-                <div class="cube-face left"></div>
-                <div class="cube-face top"></div>
-                <div class="cube-face bottom"></div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 功能卡片 -->
-    <section class="features">
-        <div class="section-title">
-            <h2>核心功能</h2>
-            <p>三大板块，从上传到解析一站式搞定</p>
-        </div>
-        <div class="feature-grid">
-            <div class="feature-card" style="--card-color: #5d9c3b;">
-                <div class="card-icon">🌍</div>
-                <h3>存档分享</h3>
-                <p>上传 Java / 基岩版存档，自动解析种子、坐标、游戏模式，一键生成分享页</p>
-                <div class="card-tags">
-                    <span>level.dat</span>
-                    <span>region</span>
-                    <span>playerdata</span>
-                </div>
+        <section class="features">
+            <div class="feature-card">
+                <h3>📁 存档分享</h3>
+                <p>上传你的 Java/基岩版存档，自动解析种子、坐标、游戏模式。</p>
             </div>
-            <div class="feature-card" style="--card-color: #c08a2e;">
-                <div class="card-icon">🔧</div>
-                <h3>Mod 库</h3>
-                <p>分享 Fabric / Forge / NeoForge Mod，自动读取元数据、MC 版本与依赖关系</p>
-                <div class="card-tags">
-                    <span>fabric.mod.json</span>
-                    <span>mods.toml</span>
-                    <span>dependencies</span>
-                </div>
+            <div class="feature-card">
+                <h3>🔧 Mod 库</h3>
+                <p>分享 Fabric/Forge/NeoForge Mod，自动读取版本依赖。</p>
             </div>
-            <div class="feature-card" style="--card-color: #6b5b95;">
-                <div class="card-icon">📊</div>
-                <h3>数据读取</h3>
-                <p>在线查看存档数据，无需启动游戏，种子、区块、玩家进度一目了然</p>
-                <div class="card-tags">
-                    <span>NBT</span>
-                    <span>种子</span>
-                    <span>进度</span>
-                </div>
+            <div class="feature-card">
+                <h3>📊 数据读取</h3>
+                <p>在线查看 level.dat、玩家数据、区块信息，无需启动游戏。</p>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- 数据统计 -->
-    <section class="stats">
-        <div class="stat-item">
-            <span class="stat-num" data-target="128">0</span>
-            <span class="stat-label">个存档</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-num" data-target="456">0</span>
-            <span class="stat-label">个 Mod</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-num" data-target="1024">0</span>
-            <span class="stat-label">次下载</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-num" data-target="89">0</span>
-            <span class="stat-label">位创作者</span>
-        </div>
-    </section>
-
-    <!-- 页脚 -->
     <footer>
-        <div class="footer-content">
-            <p>⛏️ MC档案馆 · 由社区驱动的 Minecraft 存档与 Mod 分享平台</p>
-            <p class="footer-note">本项目为自主开发，Minecraft 为 Mojang Studios 商标</p>
-        </div>
+        <p>© 2026 MC Archive | 自主开发项目</p>
     </footer>
-
-    <!-- 背景音乐 -->
-    <audio id="bgm" loop preload="none">
-        <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_7e97b9e6d5.mp3" type="audio/mpeg">
-    </audio>
 
     <script src="script.js"></script>
 </body>
