@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浏览 - MC Archive</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">⛏️ MC Archive</div>
+        <nav>
+            <a href="index.html">首页</a>
+            <a href="browse.html" class="active">浏览</a>
+            <a href="upload.html">上传</a>
+            <a href="#">登录</a>
+        </nav>
+    </header>
+
+    <main class="browse-page">
+        <h1>浏览存档与 Mod</h1>
+        
+        <div class="filters">
+            <input type="text" placeholder="搜索..." class="search-box" disabled>
+            <select class="filter-select" disabled>
+                <option>全部类型</option>
+                <option>存档</option>
+                <option>Mod</option>
+            </select>
+            <select class="filter-select" disabled>
+                <option>全部版本</option>
+                <option>1.20.4</option>
+                <option>1.19.2</option>
+            </select>
+        </div>
+
+        <div class="content-grid">
+            <!-- 空状态提示 -->
+            <div class="empty-state">
+                <p>📭 暂无内容</p>
+                <p>上传功能尚未启用，这里是预留的列表位置</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
