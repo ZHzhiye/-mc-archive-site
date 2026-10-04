@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>仪表盘 - MC Archive</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-body">
+    <div class="admin-layout">
+        <!-- 侧边栏 -->
+        <aside class="admin-sidebar">
+            <div class="admin-sidebar-logo">
+                🛡️ MC Admin
+            </div>
+            <nav class="admin-nav">
+                <a href="index.html" class="admin-nav-item">📊 仪表盘</a>
+                <a href="worlds.html" class="admin-nav-item">🌍 存档管理</a>
+                <a href="mods.html" class="admin-nav-item">🔧 Mod 管理</a>
+                <a href="users.html" class="admin-nav-item">👥 用户管理</a>
+                <a href="reviews.html" class="admin-nav-item">📋 审核队列</a>
+                <a href="settings.html" class="admin-nav-item">⚙️ 设置</a>
+            </nav>
+            <div class="admin-sidebar-footer">
+                <span id="adminUser"></span>
+                <button class="admin-btn-sm" onclick="logout()">退出</button>
+            </div>
+        </aside>
+
+        <!-- 主内容 -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <h1>仪表盘</h1>
+                <div class="admin-header-actions">
+                    <span class="admin-badge">空壳演示 v0.1</span>
+                </div>
+            </header>
+            <div class="admin-page-padding">
+<div class="admin-stats">
+                <div class="admin-stat-card">
+                    <div class="stat-icon">🌍</div>
+                    <div class="stat-info">
+                        <span class="stat-number">0</span>
+                        <span class="stat-label">存档总数</span>
+                    </div>
+                </div>
+                <div class="admin-stat-card">
+                    <div class="stat-icon">🔧</div>
+                    <div class="stat-info">
+                        <span class="stat-number">0</span>
+                        <span class="stat-label">Mod 总数</span>
+                    </div>
+                </div>
+                <div class="admin-stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-info">
+                        <span class="stat-number">1</span>
+                        <span class="stat-label">注册用户</span>
+                    </div>
+                </div>
+                <div class="admin-stat-card">
+                    <div class="stat-icon">⏳</div>
+                    <div class="stat-info">
+                        <span class="stat-number">0</span>
+                        <span class="stat-label">待审核</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-content-grid">
+                <div class="admin-panel">
+                    <div class="admin-panel-header">
+                        <h3>最近上传</h3>
+                        <span class="admin-panel-hint">（空壳 - 暂无数据）</span>
+                    </div>
+                    <div class="admin-empty">
+                        <p>📭 暂无上传记录</p>
+                    </div>
+                </div>
+                <div class="admin-panel">
+                    <div class="admin-panel-header">
+                        <h3>系统状态</h3>
+                    </div>
+                    <div class="admin-status-list">
+                        <div class="admin-status-item">
+                            <span>前端状态</span>
+                            <span class="status-ok">✅ 正常</span>
+                        </div>
+                        <div class="admin-status-item">
+                            <span>后端 API</span>
+                            <span class="status-pending">⏳ 未接入</span>
+                        </div>
+                        <div class="admin-status-item">
+                            <span>文件存储</span>
+                            <span class="status-pending">⏳ 未配置</span>
+                        </div>
+                        <div class="admin-status-item">
+                            <span>数据库</span>
+                            <span class="status-pending">⏳ 未配置</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
