@@ -1,48 +1,50 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>管理员验证 - MC Admin</title>
-<link rel="stylesheet" href="admin/style.css">
-</head>
-<body class="login-body">
-<div class="login-box">
-  <div class="login-brand"><div class="lg">🛡️ MC Archive</div><div class="tag">Minecraft 存档与 Mod 资料管理平台</div></div>
-  <div class="login-card">
-    <h1>🔐 管理员验证</h1>
-    <p class="login-desc">请上传管理员密钥文件以进入后台</p>
-    <div class="drop" id="drop">
-      <div class="ic">📎</div><p>拖拽密钥文件到此处，或点击选择</p>
-      <small>需要 <code>admin.key</code> 文件</small>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>管理员验证 - MC Admin</title><link rel="stylesheet" href="admin/style.css"></head>
+<body style="background:linear-gradient(135deg,#0e1a14,#163a26);min-height:100vh;display:flex;align-items:center;justify-content:center;">
+<div style="width:100%;max-width:420px;padding:1rem;">
+  <div style="background:#fff;border-radius:14px;padding:2rem;box-shadow:0 12px 40px rgba(0,0,0,.2);">
+    <div style="text-align:center;margin-bottom:1.8rem;">
+      <div style="font-size:1.6rem;font-weight:800;color:#2e9e5b;">🛡️ MC Admin</div>
+      <p style="color:#6b7c8f;font-size:.88rem;margin-top:.4rem;">管理员验证</p>
+    </div>
+    <p style="color:#2c3e50;font-weight:600;margin-bottom:1.5rem;">请上传管理员密钥文件以进入后台</p>
+    <div id="drop" style="border:2px dashed #c5d4e2;border-radius:10px;padding:2.2rem;text-align:center;cursor:pointer;background:#fafcfe;transition:.2s;margin-bottom:1.2rem;">
+      <div style="font-size:2.4rem;margin-bottom:.5rem;">📎</div>
+      <p style="font-weight:600;">拖拽密钥文件到此处，或点击选择</p>
+      <small style="color:#6b7c8f;">需要 <code style="background:#e8f7ee;color:#2e9e5b;padding:1px 5px;border-radius:3px;">admin.key</code> 文件</small>
     </div>
     <input type="file" id="kf" accept=".key" hidden>
-    <div class="finfo" id="fi" style="display:none;">
-      <span class="fn"></span><span class="fs"></span>
+    <div id="fi" style="display:none;background:#f0f7f3;border:1px solid #c8e6d4;border-radius:8px;padding:.8rem 1rem;margin-bottom:1.2rem;justify-content:space-between;align-items:center;">
+      <span id="fn" style="font-weight:600;font-size:.88rem;"></span><span id="fs" style="font-size:.85rem;"></span>
     </div>
-    <button class="btn btn-block" id="vb" disabled>验证并进入</button>
-    <div class="hint"><p>🔑 密钥文件说明</p><ul>
-      <li>· 文件名必须为 <code>admin.key</code></li>
-      <li>· 文件内容需包含管理员令牌</li>
-      <li>· 请联系站长获取密钥文件</li>
-    </ul></div>
-    <div class="lfoot"><a href="index.html">← 返回用户端</a></div>
+    <button id="vb" disabled style="width:100%;padding:.85rem;background:#2e9e5b;color:#fff;border:none;border-radius:8px;font-size:1rem;cursor:pointer;margin-bottom:1.4rem;">验证并进入</button>
+    <div style="background:#f8fafc;border:1px solid #e4e9f0;border-radius:10px;padding:1.1rem;margin-bottom:1.4rem;">
+      <p style="font-size:.82rem;font-weight:600;margin-bottom:.5rem;">🔑 密钥文件说明</p>
+      <ul style="list-style:none;font-size:.8rem;color:#6b7c8f;line-height:1.9;">
+        <li>· 文件名必须为 <code>admin.key</code></li>
+        <li>· 文件内容需包含管理员令牌</li>
+        <li>· 请联系站长获取密钥文件</li>
+      </ul>
+    </div>
+    <div style="text-align:center;"><a href="index.html" style="color:#2e9e5b;font-size:.88rem;">← 返回用户端</a></div>
   </div>
 </div>
 <script>
-var VF='admin.key', VP='MC-ADMIN-';
+var VF='admin.key',VP='MC-ADMIN-';
 var drop=document.getElementById('drop'),kf=document.getElementById('kf'),
-    fi=document.getElementById('fi'),fn=fi.querySelector('.fn'),fs=fi.querySelector('.fs'),vb=document.getElementById('vb');
-var uf=null;
+    fi=document.getElementById('fi'),fn=document.getElementById('fn'),
+    fs=document.getElementById('fs'),vb=document.getElementById('vb'),uf=null;
 drop.addEventListener('click',function(){kf.click();});
-drop.addEventListener('dragover',function(e){e.preventDefault();drop.classList.add('drag');});
-drop.addEventListener('dragleave',function(){drop.classList.remove('drag');});
-drop.addEventListener('drop',function(e){e.preventDefault();drop.classList.remove('drag');if(e.dataTransfer.files.length)hf(e.dataTransfer.files[0]);});
+drop.addEventListener('dragover',function(e){e.preventDefault();drop.style.borderColor='#2e9e5b';drop.style.background='#e8f7ee';});
+drop.addEventListener('dragleave',function(){drop.style.borderColor='#c5d4e2';drop.style.background='#fafcfe';});
+drop.addEventListener('drop',function(e){e.preventDefault();if(e.dataTransfer.files.length)hf(e.dataTransfer.files[0]);});
 kf.addEventListener('change',function(e){if(e.target.files.length)hf(e.target.files[0]);});
 function hf(file){
   uf=file;fn.textContent=file.name;
-  if(file.name===VF){fs.textContent='✅ 文件名正确';fs.className='fs ok';vb.disabled=false;}
-  else{fs.textContent='❌ 需要 admin.key';fs.className='fs err';vb.disabled=true;}
+  if(file.name===VF){fs.textContent='✅ 文件名正确';fs.style.color='#2e9e5b';vb.disabled=false;}
+  else{fs.textContent='❌ 需要 admin.key';fs.style.color='#e74c3c';vb.disabled=true;}
   fi.style.display='flex';drop.style.display='none';
 }
 vb.addEventListener('click',function(){
@@ -59,6 +61,4 @@ vb.addEventListener('click',function(){
   r.readAsText(uf);
 });
 if(localStorage.getItem('mc_admin_auth')==='true'){location.href='admin/index.html';}
-</script>
-</body>
-</html>
+</script></body></html>

@@ -1,75 +1,37 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>仪表盘 - MC Admin</title>
-<link rel="stylesheet" href="style.css">
-</head>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>仪表盘 - MC Admin</title><link rel="stylesheet" href="style.css"></head>
 <body>
-<nav class="admin-nav">
-  <div class="admin-nav-inner">
-    <div class="an-left">
-      <span class="an-logo">🛡️ MC Admin</span>
-      <span class="an-ver">空壳 v0.1</span>
-    </div>
-    <div class="an-links">
-      <a href="index.html" class='active'>📊 仪表盘</a>
-<a href="worlds.html">🌍 存档管理</a>
-<a href="mods.html">🔧 Mod管理</a>
-<a href="users.html">👥 用户管理</a>
-<a href="reviews.html">📋 审核队列</a>
-<a href="settings.html">⚙️ 设置</a>
-      <a href="../index.html">🏠 前台</a>
-      <a href="javascript:logout()" class="logout">退出</a>
-    </div>
-  </div>
-</nav>
-<div class="admin-wrap">
-  <div class="breadcrumb" style="padding-top:1.5rem;color:#6b7c8f;font-size:.85rem;">首页 / 仪表盘</div>
-
-<header class="admin-hero">
-  <h1>🛡️ MC Admin</h1>
-  <div class="en">Minecraft Archive Admin</div>
-  <p>Minecraft 存档与 Mod 资料管理平台 · 后台管理</p>
-  <div class="admin-hero-actions">
-    <button class="btn-white" onclick="location.href='worlds.html'">▶ 开始管理</button>
-  </div>
-</header>
+<aside class="sidebar">
+  <div class="side-logo"><b>🛡️ MC Admin</b><small>资料管理平台</small></div>
+  <nav class="side-nav"><a href="index.html" class active>📊 仪表盘</a>
+  <a href="worlds.html" class>🌍 存档管理</a>
+  <a href="mods.html" class>🔧 Mod管理</a>
+  <a href="users.html" class>👥 用户管理</a>
+  <a href="reviews.html" class>📋 审核队列</a>
+  <a href="settings.html" class>⚙️ 设置</a></nav>
+  <div class="side-foot"><span id="au">@admin</span><button class="btn-out" onclick="logout()">退出</button></div>
+</aside>
+<main class="main">
+  <header class="mhead"><h1>仪表盘</h1><span class="badge">空壳 v0.1</span></header>
+  <div class="content">
 <div class="stats">
-  <div class="stat-card"><div class="sic">🌍</div><div class="sinfo"><span class="snum">0</span><span class="slabel">存档总数</span></div></div>
-  <div class="stat-card"><div class="sic">🔧</div><div class="sinfo"><span class="snum">0</span><span class="slabel">Mod 总数</span></div></div>
-  <div class="stat-card"><div class="sic">👥</div><div class="sinfo"><span class="snum">1</span><span class="slabel">注册用户</span></div></div>
-  <div class="stat-card"><div class="sic">⏳</div><div class="sinfo"><span class="snum">0</span><span class="slabel">待审核</span></div></div>
+  <div class="scard"><div class="sic">🌍</div><div><div class="snum">0</div><div class="slabel">存档总数</div></div></div>
+  <div class="scard"><div class="sic">🔧</div><div><div class="snum">0</div><div class="slabel">Mod 总数</div></div></div>
+  <div class="scard"><div class="sic">👥</div><div><div class="snum">1</div><div class="slabel">注册用户</div></div></div>
+  <div class="scard"><div class="sic">⏳</div><div><div class="snum">0</div><div class="slabel">待审核</div></div></div>
 </div>
 <div class="two-col">
-  <div class="panel">
-    <div class="panel-head"><h3>📥 最近上传</h3><a href="reviews.html">查看全部 →</a></div>
-    <div class="panel-body"><div class="empty"><div class="ic">📭</div><p>暂无上传记录</p></div></div>
-  </div>
-  <div class="panel">
-    <div class="panel-head"><h3>⚙️ 系统状态</h3></div>
-    <div>
-      <div class="sitem"><span><span class="dot ok"></span>前端界面</span><b style="color:#2e9e5b;">正常</b></div>
-      <div class="sitem"><span><span class="dot pend"></span>后端 API</span><b style="color:#f39c12;">未接入</b></div>
-      <div class="sitem"><span><span class="dot pend"></span>文件存储</span><b style="color:#f39c12;">未配置</b></div>
-      <div class="sitem"><span><span class="dot pend"></span>数据库</span><b style="color:#f39c12;">未配置</b></div>
-    </div>
+  <div class="card"><h3>📥 最近上传</h3><div class="empty"><div class="ic">📭</div><p>暂无上传记录</p></div></div>
+  <div class="card"><h3>⚙️ 系统状态</h3>
+    <div class="sitem"><span>前端界面</span><b class="ok">✓ 正常</b></div>
+    <div class="sitem"><span>后端 API</span><b class="pend">⏳ 未接入</b></div>
+    <div class="sitem"><span>文件存储</span><b class="pend">⏳ 未配置</b></div>
+    <div class="sitem"><span>数据库</span><b class="pend">⏳ 未配置</b></div>
   </div>
 </div>
-<div class="panel">
-  <div class="panel-head"><h3>📋 快速操作</h3></div>
-  <div class="panel-body">
-    <div class="cards">
-      <a href="worlds.html" class="card"><div class="ic">🌍</div><h3>管理存档</h3><p>增删改查、解析 NBT、封面管理</p></a>
-      <a href="mods.html" class="card"><div class="ic">🔧</div><h3>管理 Mod</h3><p>读 jar 元数据、依赖检查、版本兼容</p></a>
-      <a href="users.html" class="card"><div class="ic">👥</div><h3>用户管理</h3><p>角色分配、封禁、上传配额</p></a>
-      <a href="reviews.html" class="card"><div class="ic">📋</div><h3>审核队列</h3><p>通过、打回、附修改意见</p></a>
-    </div>
-  </div>
+<div class="card"><h3>📋 快速操作</h3><p>管理存档 · 管理 Mod · 用户管理 · 审核队列 · 系统设置</p></div>
 </div>
-
-</div>
-<script src="script.js"></script>
-</body>
-</html>
+</main>
+<script src="script.js"></script></body></html>

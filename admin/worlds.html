@@ -1,42 +1,28 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>存档管理 - MC Admin</title>
-<link rel="stylesheet" href="style.css">
-</head>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>存档管理 - MC Admin</title><link rel="stylesheet" href="style.css"></head>
 <body>
-<nav class="admin-nav">
-  <div class="admin-nav-inner">
-    <div class="an-left">
-      <span class="an-logo">🛡️ MC Admin</span>
-      <span class="an-ver">空壳 v0.1</span>
-    </div>
-    <div class="an-links">
-      <a href="index.html">📊 仪表盘</a>
-<a href="worlds.html" class='active'>🌍 存档管理</a>
-<a href="mods.html">🔧 Mod管理</a>
-<a href="users.html">👥 用户管理</a>
-<a href="reviews.html">📋 审核队列</a>
-<a href="settings.html">⚙️ 设置</a>
-      <a href="../index.html">🏠 前台</a>
-      <a href="javascript:logout()" class="logout">退出</a>
-    </div>
-  </div>
-</nav>
-<div class="admin-wrap">
-  <div class="breadcrumb" style="padding-top:1.5rem;color:#6b7c8f;font-size:.85rem;">内容 / 存档管理</div>
-
+<aside class="sidebar">
+  <div class="side-logo"><b>🛡️ MC Admin</b><small>资料管理平台</small></div>
+  <nav class="side-nav"><a href="index.html" class>📊 仪表盘</a>
+  <a href="worlds.html" class active>🌍 存档管理</a>
+  <a href="mods.html" class>🔧 Mod管理</a>
+  <a href="users.html" class>👥 用户管理</a>
+  <a href="reviews.html" class>📋 审核队列</a>
+  <a href="settings.html" class>⚙️ 设置</a></nav>
+  <div class="side-foot"><span id="au">@admin</span><button class="btn-out" onclick="logout()">退出</button></div>
+</aside>
+<main class="main">
+  <header class="mhead"><h1>存档管理</h1><span class="badge">空壳 v0.1</span></header>
+  <div class="content">
 <div class="toolbar">
-  <input type="text" placeholder="🔍 搜索存档..." style="flex:1;min-width:200px;">
-  <select><option>全部版本</option><option>1.20.4</option><option>1.19.2</option><option>1.12.2</option></select>
-  <select><option>全部状态</option><option>已发布</option><option>待审核</option><option>已下架</option></select>
-  <button class="btn">+ 新增存档</button>
+  <input type="text" placeholder="🔍 搜索存档..." style="flex:1;min-width:180px;">
+  <select><option>全部版本</option><option>1.20.4</option><option>1.19.2</option></select>
+  <select><option>全部状态</option><option>已发布</option><option>待审核</option></select>
+  <button class="btn">+ 新增</button>
 </div>
-<div class="panel"><div class="panel-body"><div class="empty"><div class="ic">🚧</div><p>存档管理为空壳 · 后续支持列表/搜索/编辑/删除/解析 NBT</p></div></div></div>
-
+<div class="card"><div class="empty"><div class="ic">🚧</div><p>存档管理为空壳 · 后续支持列表/搜索/编辑/删除/解析 NBT</p></div></div>
 </div>
-<script src="script.js"></script>
-</body>
-</html>
+</main>
+<script src="script.js"></script></body></html>
