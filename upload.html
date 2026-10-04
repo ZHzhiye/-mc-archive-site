@@ -3,86 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>上传 - MC Archive</title>
+    <title>上传 - MC 档案馆</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <canvas id="particles"></canvas>
+
     <header>
-        <div class="logo">⛏️ MC Archive</div>
+        <div class="logo">
+            <span class="logo-block">🟩</span>
+            <span class="logo-text">MC档案馆</span>
+        </div>
         <nav>
             <a href="index.html">首页</a>
             <a href="browse.html">浏览</a>
             <a href="upload.html" class="active">上传</a>
-            <a href="#">登录</a>
+            <a href="about.html">关于</a>
+            <button id="musicBtn" class="music-btn" title="背景音乐开关">
+                <span id="musicIcon">🔇</span>
+            </button>
         </nav>
     </header>
 
     <main class="upload-page">
-        <h1>上传存档或 Mod</h1>
-        <p class="subtitle">（当前为空壳演示，暂未接入后端）</p>
+        <div class="page-header">
+            <h1>📤 上传内容</h1>
+            <p class="subtitle">（当前为空壳演示，后端功能待开发）</p>
+        </div>
 
         <div class="upload-tabs">
-            <button class="tab-btn active" onclick="switchTab('world')">🌍 上传存档</button>
-            <button class="tab-btn" onclick="switchTab('mod')">🔧 上传 Mod</button>
+            <button class="tab-btn active" data-tab="world">🌍 上传存档</button>
+            <button class="tab-btn" data-tab="mod">🔧 上传 Mod</button>
         </div>
 
         <!-- 存档上传表单 -->
         <div id="world-tab" class="tab-content active">
-            <form class="upload-form" onsubmit="return false;">
+            <form class="mc-form" onsubmit="return false;">
                 <div class="form-group">
-                    <label>选择存档文件 (.zip / .mcworld)</label>
-                    <input type="file" accept=".zip,.mcworld" disabled>
-                    <small>暂时只能选择文件，上传功能待开发</small>
+                    <label>📁 选择存档文件</label>
+                    <div class="file-drop" onclick="this.classList.toggle('clicked')">
+                        <span class="drop-icon">📦</span>
+                        <p>点击选择 .zip / .mcworld 文件</p>
+                        <small>支持 Java 版与基岩版存档（功能待开发）</small>
+                        <input type="file" accept=".zip,.mcworld" disabled hidden>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>📝 存档名称</label>
+                        <input type="text" placeholder="如：我的生存世界 v2" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>🎮 游戏版本</label>
+                        <select disabled>
+                            <option>1.20.4</option>
+                            <option>1.19.2</option>
+                            <option>1.12.2</option>
+                            <option>1.7.10</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>🌐 版本类型</label>
+                        <select disabled>
+                            <option>Java 版</option>
+                            <option>基岩版</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>🎯 游戏模式</label>
+                        <select disabled>
+                            <option>生存</option>
+                            <option>创造</option>
+                            <option>冒险</option>
+                            <option>旁观</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label>存档名称</label>
-                    <input type="text" placeholder="如：我的生存世界 v2" disabled>
-                </div>
-                <div class="form-group">
-                    <label>游戏版本</label>
-                    <select disabled>
-                        <option>1.20.4</option>
-                        <option>1.19.2</option>
-                        <option>1.12.2</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>描述</label>
+                    <label>📄 描述</label>
                     <textarea rows="4" placeholder="介绍一下这个存档..." disabled></textarea>
                 </div>
-                <button type="submit" class="btn" disabled>上传（暂未启用）</button>
+                <button type="submit" class="btn btn-primary btn-block" disabled>🚀 开始上传（暂未启用）</button>
             </form>
         </div>
 
         <!-- Mod 上传表单 -->
         <div id="mod-tab" class="tab-content">
-            <form class="upload-form" onsubmit="return false;">
+            <form class="mc-form" onsubmit="return false;">
                 <div class="form-group">
-                    <label>选择 Mod 文件 (.jar)</label>
-                    <input type="file" accept=".jar" disabled>
-                    <small>暂时只能选择文件，上传功能待开发</small>
+                    <label>📦 选择 Mod 文件</label>
+                    <div class="file-drop">
+                        <span class="drop-icon">🔧</span>
+                        <p>点击选择 .jar 文件</p>
+                        <small>自动识别 Fabric / Forge / NeoForge（功能待开发）</small>
+                        <input type="file" accept=".jar" disabled hidden>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>📝 Mod 名称</label>
+                        <input type="text" placeholder="如：JEI 物品管理器" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>⚙️ 加载器</label>
+                        <select disabled>
+                            <option>Fabric</option>
+                            <option>Forge</option>
+                            <option>NeoForge</option>
+                            <option>Quilt</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>🎮 MC 版本</label>
+                        <input type="text" placeholder="如：1.20.1" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>🔢 Mod 版本</label>
+                        <input type="text" placeholder="如：15.2.0.27" disabled>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label>Mod 名称</label>
-                    <input type="text" placeholder="如：JEI 物品管理器" disabled>
+                    <label>📄 描述</label>
+                    <textarea rows="4" placeholder="介绍一下这个 Mod..." disabled></textarea>
                 </div>
-                <div class="form-group">
-                    <label>加载器</label>
-                    <select disabled>
-                        <option>Fabric</option>
-                        <option>Forge</option>
-                        <option>NeoForge</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>MC 版本</label>
-                    <input type="text" placeholder="如：1.20.1" disabled>
-                </div>
-                <button type="submit" class="btn" disabled>上传（暂未启用）</button>
+                <button type="submit" class="btn btn-primary btn-block" disabled>🚀 开始上传（暂未启用）</button>
             </form>
         </div>
     </main>
 
+    <footer>
+        <div class="footer-content">
+            <p>⛏️ MC档案馆 · 由社区驱动的 Minecraft 存档与 Mod 分享平台</p>
+        </div>
+    </footer>
+
+    <audio id="bgm" loop preload="none">
+        <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_7e97b9e6d5.mp3" type="audio/mpeg">
+    </audio>
     <script src="script.js"></script>
 </body>
 </html>

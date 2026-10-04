@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于 - MC 档案馆</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="particles"></canvas>
+
+    <header>
+        <div class="logo">
+            <span class="logo-block">🟩</span>
+            <span class="logo-text">MC档案馆</span>
+        </div>
+        <nav>
+            <a href="index.html">首页</a>
+            <a href="browse.html">浏览</a>
+            <a href="upload.html">上传</a>
+            <a href="about.html" class="active">关于</a>
+            <button id="musicBtn" class="music-btn" title="背景音乐开关">
+                <span id="musicIcon">🔇</span>
+            </button>
+        </nav>
+    </header>
+
+    <main class="about-page">
+        <div class="page-header">
+            <h1>📖 关于项目</h1>
+        </div>
+
+        <div class="about-content">
+            <div class="about-section">
+                <h2>🎯 项目目标</h2>
+                <p>MC档案馆是一个完全免费、自主开发的 Minecraft 存档与 Mod 分享平台。我们的目标是让玩家能够：</p>
+                <ul>
+                    <li>轻松上传并分享自己的游戏存档</li>
+                    <li>发现并下载他人分享的精彩内容</li>
+                    <li>在线解析存档数据，无需启动游戏</li>
+                    <li>管理 Mod 元数据，自动识别版本与依赖</li>
+                </ul>
+            </div>
+
+            <div class="about-section">
+                <h2>🛠️ 技术栈（规划中）</h2>
+                <div class="tech-grid">
+                    <div class="tech-item">前端：HTML / CSS / JS</div>
+                    <div class="tech-item">后端：Python FastAPI</div>
+                    <div class="tech-item">存档解析：nbtlib</div>
+                    <div class="tech-item">Mod 解析：@xmcl/mods</div>
+                    <div class="tech-item">数据库：PostgreSQL</div>
+                    <div class="tech-item">存储：对象存储服务</div>
+                </div>
+            </div>
+
+            <div class="about-section">
+                <h2>⚠️ 声明</h2>
+                <p>本项目为个人学习与技术实践项目，Minecraft 及其相关标识为 Mojang Studios 的商标。所有上传内容由用户自行负责，请确保拥有相应权利。</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>⛏️ MC档案馆 · 由社区驱动的 Minecraft 存档与 Mod 分享平台</p>
+            <p class="footer-note">本项目为自主开发，Minecraft 为 Mojang Studios 商标</p>
+        </div>
+    </footer>
+
+    <audio id="bgm" loop preload="none">
+        <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_7e97b9e6d5.mp3" type="audio/mpeg">
+    </audio>
+    <script src="script.js"></script>
+</body>
+</html>
