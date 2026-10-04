@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>关于 - MC Archive</title>
+<title>Mod库 - MC Archive</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,31 +16,25 @@
     <div class="nav-links">
       <a href="index.html">首页</a>
       <a href="worlds.html">存档库</a>
-      <a href="mods.html">Mod库</a>
+      <a href="mods.html" class="active">Mod库</a>
       <a href="rules.html">上传规范</a>
       <a href="terms.html">术语梗</a>
       <a href="news.html">最新动态</a>
-      <a href="about.html" class="active">关于</a>
+      <a href="about.html">关于</a>
       <a href="admin-login.html" class="admin-link">🔐 管理</a>
     </div>
   </div>
 </nav>
 
-<div class="about-hero"><div class="container"><h1>⛏️ 关于 MC Archive</h1><p>Minecraft 存档与 Mod 资料管理平台</p></div></div>
+<div class="page-hero"><div class="container"><div class="breadcrumb">首页 / Mod库</div><h1>🔧 Mod 库</h1><p>收录各类 Mod 的完整资料与依赖信息</p></div></div>
 <section class="section"><div class="container">
-  <div class="about-grid">
-    <div class="about-card"><h3>📖 关于本站</h3><ul>
-      <li><b>定位：</b>非官方 Minecraft 粉丝资料站</li>
-      <li><b>功能：</b>存档 / Mod 收录与分享</li>
-      <li><b>愿景：</b>让每个方块世界都被妥善收藏</li>
-      <li><b>阶段：</b>空壳演示 v0.1</li>
-    </ul></div>
-    <div class="about-card"><h3>🛠 技术栈规划</h3><ul>
-      <li><b>前端：</b>HTML / CSS / JavaScript</li>
-      <li><b>部署：</b>GitHub Pages</li>
-      <li><b>后端：</b>待接入</li>
-      <li><b>数据库：</b>待配置</li>
-    </ul></div>
+  <div class="toolbar">
+    <input type="text" placeholder="🔍 搜索 Mod..." style="flex:1;min-width:200px;">
+    <select><option>全部加载器</option><option>Fabric</option><option>Forge</option><option>NeoForge</option></select>
+    <select><option>全部版本</option><option>1.20.4</option><option>1.19.2</option></select>
+  </div>
+  <div class="list-grid">
+    <div class="empty" style="grid-column:1/-1;"><div class="ic">📭</div><p>暂无 Mod · 空壳阶段，等待第一位上传者</p></div>
   </div>
 </div></section>
 

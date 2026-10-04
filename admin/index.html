@@ -1,170 +1,75 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>仪表盘 - MC Archive Admin</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>仪表盘 - MC Admin</title>
+<link rel="stylesheet" href="style.css">
 </head>
-<body class="admin-body">
-    <div class="admin-layout">
-        <aside class="admin-sidebar">
-            <div class="admin-sidebar-logo">
-                <div class="logo-icon">🛡️ MC Admin <small>v0.1</small></div>
-                <div class="logo-sub">资料管理平台</div>
-            </div>
-            <nav class="admin-nav">
-                <div class="admin-nav-section">核心功能</div>
-                <a href="index.html" class="admin-nav-item active"><span class="nav-icon">📊</span>仪表盘</a>
-                <a href="worlds.html" class="admin-nav-item"><span class="nav-icon">🌍</span>存档管理</a>
-                <a href="mods.html" class="admin-nav-item"><span class="nav-icon">🔧</span>Mod 管理</a>
-                <a href="users.html" class="admin-nav-item"><span class="nav-icon">👥</span>用户管理</a>
-                <a href="reviews.html" class="admin-nav-item"><span class="nav-icon">📋</span>审核队列</a>
-                <a href="settings.html" class="admin-nav-item"><span class="nav-icon">⚙️</span>设置</a>
-            </nav>
-            <div class="admin-sidebar-footer">
-                <div class="admin-user-chip">
-                    <div class="avatar" id="adminAvatar">A</div>
-                    <span class="uname" id="adminUser"></span>
-                </div>
-                <button class="admin-btn-logout" onclick="logout()">退出</button>
-            </div>
-        </aside>
-
-        <main class="admin-main">
-            <header class="admin-header">
-                <div class="admin-header-left">
-                    <h1>仪表盘</h1>
-                    <div class="breadcrumb">首页 / 仪表盘</div>
-                </div>
-                <div class="admin-header-right">
-                    <span class="admin-badge">空壳演示 v0.1</span>
-                    <button class="admin-header-btn" title="刷新" onclick="location.reload()">🔄</button>
-                    <button class="admin-header-btn" title="返回前台" onclick="location.href='../index.html'">🏠</button>
-                </div>
-            </header>
-            <div class="admin-page-padding">
-
-                <div class="admin-hero">
-                    <div>
-                        <h2>👋 欢迎回来，Admin</h2>
-                        <p>今天是 2026 年 10 月 5 日，祝你管理愉快！</p>
-                    </div>
-                    <div class="admin-hero-stats">
-                        <div class="admin-hero-stat">
-                            <div class="num">0</div>
-                            <div class="label">总资源数</div>
-                        </div>
-                        <div class="admin-hero-stat">
-                            <div class="num">1</div>
-                            <div class="label">在线用户</div>
-                        </div>
-                        <div class="admin-hero-stat">
-                            <div class="num">0</div>
-                            <div class="label">待处理</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="admin-stats">
-                    <div class="admin-stat-card">
-                        <div class="stat-icon green">🌍</div>
-                        <div class="stat-info">
-                            <span class="stat-number">0</span>
-                            <span class="stat-label">存档总数</span>
-                        </div>
-                    </div>
-                    <div class="admin-stat-card">
-                        <div class="stat-icon blue">🔧</div>
-                        <div class="stat-info">
-                            <span class="stat-number">0</span>
-                            <span class="stat-label">Mod 总数</span>
-                        </div>
-                    </div>
-                    <div class="admin-stat-card">
-                        <div class="stat-icon orange">👥</div>
-                        <div class="stat-info">
-                            <span class="stat-number">1</span>
-                            <span class="stat-label">注册用户</span>
-                        </div>
-                    </div>
-                    <div class="admin-stat-card">
-                        <div class="stat-icon purple">⏳</div>
-                        <div class="stat-info">
-                            <span class="stat-number">0</span>
-                            <span class="stat-label">待审核</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="admin-content-grid">
-                    <div class="admin-panel">
-                        <div class="admin-panel-header">
-                            <h3>📥 最近上传</h3>
-                            <a href="reviews.html" class="admin-panel-link">查看全部 →</a>
-                        </div>
-                        <div class="admin-panel-body">
-                            <div class="admin-empty">
-                                <div class="empty-icon">📭</div>
-                                <p>暂无上传记录</p>
-                                <p class="empty-sub">用户上传的资源会显示在这里</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="admin-panel">
-                        <div class="admin-panel-header">
-                            <h3>⚙️ 系统状态</h3>
-                        </div>
-                        <div class="admin-status-list">
-                            <div class="admin-status-item">
-                                <span><span class="status-dot ok"></span>前端界面</span>
-                                <span style="color:var(--green);font-weight:600;">正常</span>
-                            </div>
-                            <div class="admin-status-item">
-                                <span><span class="status-dot pending"></span>后端 API</span>
-                                <span style="color:#f39c12;font-weight:600;">未接入</span>
-                            </div>
-                            <div class="admin-status-item">
-                                <span><span class="status-dot pending"></span>文件存储</span>
-                                <span style="color:#f39c12;font-weight:600;">未配置</span>
-                            </div>
-                            <div class="admin-status-item">
-                                <span><span class="status-dot pending"></span>数据库</span>
-                                <span style="color:#f39c12;font-weight:600;">未配置</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="admin-panel" style="margin-top:1.5rem;">
-                    <div class="admin-panel-header">
-                        <h3>📋 快速操作</h3>
-                    </div>
-                    <div class="admin-panel-body">
-                        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem;">
-                            <a href="worlds.html" style="display:block; padding:1.2rem; border:1px solid var(--border); border-radius:10px; transition:all 0.2s; text-align:center;" onmouseover="this.style.borderColor='var(--green)';this.style.background='var(--green-light)'" onmouseout="this.style.borderColor='var(--border)';this.style.background='#fff'" >
-                                <div style="font-size:2rem;">🌍</div>
-                                <div style="font-weight:600; margin-top:0.5rem;">管理存档</div>
-                            </a>
-                            <a href="mods.html" style="display:block; padding:1.2rem; border:1px solid var(--border); border-radius:10px; transition:all 0.2s; text-align:center;" onmouseover="this.style.borderColor='var(--green)';this.style.background='var(--green-light)'" onmouseout="this.style.borderColor='var(--border)';this.style.background='#fff'" >
-                                <div style="font-size:2rem;">🔧</div>
-                                <div style="font-weight:600; margin-top:0.5rem;">管理 Mod</div>
-                            </a>
-                            <a href="users.html" style="display:block; padding:1.2rem; border:1px solid var(--border); border-radius:10px; transition:all 0.2s; text-align:center;" onmouseover="this.style.borderColor='var(--green)';this.style.background='var(--green-light)'" onmouseout="this.style.borderColor='var(--border)';this.style.background='#fff'" >
-                                <div style="font-size:2rem;">👥</div>
-                                <div style="font-weight:600; margin-top:0.5rem;">用户管理</div>
-                            </a>
-                            <a href="reviews.html" style="display:block; padding:1.2rem; border:1px solid var(--border); border-radius:10px; transition:all 0.2s; text-align:center;" onmouseover="this.style.borderColor='var(--green)';this.style.background='var(--green-light)'" onmouseout="this.style.borderColor='var(--border)';this.style.background='#fff'" >
-                                <div style="font-size:2rem;">📋</div>
-                                <div style="font-weight:600; margin-top:0.5rem;">审核队列</div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </main>
+<body>
+<nav class="admin-nav">
+  <div class="admin-nav-inner">
+    <div class="an-left">
+      <span class="an-logo">🛡️ MC Admin</span>
+      <span class="an-ver">空壳 v0.1</span>
     </div>
-    <script src="script.js"></script>
+    <div class="an-links">
+      <a href="index.html" class='active'>📊 仪表盘</a>
+<a href="worlds.html">🌍 存档管理</a>
+<a href="mods.html">🔧 Mod管理</a>
+<a href="users.html">👥 用户管理</a>
+<a href="reviews.html">📋 审核队列</a>
+<a href="settings.html">⚙️ 设置</a>
+      <a href="../index.html">🏠 前台</a>
+      <a href="javascript:logout()" class="logout">退出</a>
+    </div>
+  </div>
+</nav>
+<div class="admin-wrap">
+  <div class="breadcrumb" style="padding-top:1.5rem;color:#6b7c8f;font-size:.85rem;">首页 / 仪表盘</div>
+
+<header class="admin-hero">
+  <h1>🛡️ MC Admin</h1>
+  <div class="en">Minecraft Archive Admin</div>
+  <p>Minecraft 存档与 Mod 资料管理平台 · 后台管理</p>
+  <div class="admin-hero-actions">
+    <button class="btn-white" onclick="location.href='worlds.html'">▶ 开始管理</button>
+  </div>
+</header>
+<div class="stats">
+  <div class="stat-card"><div class="sic">🌍</div><div class="sinfo"><span class="snum">0</span><span class="slabel">存档总数</span></div></div>
+  <div class="stat-card"><div class="sic">🔧</div><div class="sinfo"><span class="snum">0</span><span class="slabel">Mod 总数</span></div></div>
+  <div class="stat-card"><div class="sic">👥</div><div class="sinfo"><span class="snum">1</span><span class="slabel">注册用户</span></div></div>
+  <div class="stat-card"><div class="sic">⏳</div><div class="sinfo"><span class="snum">0</span><span class="slabel">待审核</span></div></div>
+</div>
+<div class="two-col">
+  <div class="panel">
+    <div class="panel-head"><h3>📥 最近上传</h3><a href="reviews.html">查看全部 →</a></div>
+    <div class="panel-body"><div class="empty"><div class="ic">📭</div><p>暂无上传记录</p></div></div>
+  </div>
+  <div class="panel">
+    <div class="panel-head"><h3>⚙️ 系统状态</h3></div>
+    <div>
+      <div class="sitem"><span><span class="dot ok"></span>前端界面</span><b style="color:#2e9e5b;">正常</b></div>
+      <div class="sitem"><span><span class="dot pend"></span>后端 API</span><b style="color:#f39c12;">未接入</b></div>
+      <div class="sitem"><span><span class="dot pend"></span>文件存储</span><b style="color:#f39c12;">未配置</b></div>
+      <div class="sitem"><span><span class="dot pend"></span>数据库</span><b style="color:#f39c12;">未配置</b></div>
+    </div>
+  </div>
+</div>
+<div class="panel">
+  <div class="panel-head"><h3>📋 快速操作</h3></div>
+  <div class="panel-body">
+    <div class="cards">
+      <a href="worlds.html" class="card"><div class="ic">🌍</div><h3>管理存档</h3><p>增删改查、解析 NBT、封面管理</p></a>
+      <a href="mods.html" class="card"><div class="ic">🔧</div><h3>管理 Mod</h3><p>读 jar 元数据、依赖检查、版本兼容</p></a>
+      <a href="users.html" class="card"><div class="ic">👥</div><h3>用户管理</h3><p>角色分配、封禁、上传配额</p></a>
+      <a href="reviews.html" class="card"><div class="ic">📋</div><h3>审核队列</h3><p>通过、打回、附修改意见</p></a>
+    </div>
+  </div>
+</div>
+
+</div>
+<script src="script.js"></script>
 </body>
 </html>

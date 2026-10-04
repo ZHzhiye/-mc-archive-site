@@ -1,26 +1,19 @@
-# MC Archive - Minecraft 存档与 Mod 分享网站
+# MC Archive - Minecraft 存档与 Mod 资料站
 
-## 简介
-这是一个 Minecraft 存档和 Mod 分享网站的空壳前端，使用纯 HTML + CSS + JavaScript 构建，无需后端即可运行。
+仿方块逃亡中(mctzz)风格的 MC 资料管理平台空壳。
 
-## 文件结构
-```
-mc-archive-site/
-├── index.html    # 首页
-├── upload.html   # 上传页面
-├── browse.html   # 浏览/下载页面
-├── style.css     # 样式表
-├── script.js     # 交互脚本
-└── README.md     # 说明文件
-```
+## 结构
+- index.html      首页
+- worlds.html     存档库
+- mods.html       Mod库
+- upload.html     上传资源
+- rules.html      上传规范
+- terms.html      术语梗百科
+- news.html       最新动态
+- about.html      关于
+- admin-login.html 管理员登录（文件验证）
+- admin/          管理后台（仪表盘/存档/Mod/用户/审核/设置）
 
-## 如何运行
-1. 直接用浏览器打开 `index.html` 即可查看
-2. 或使用 VS Code 的 Live Server 插件获得更好的开发体验
-
-## 后续开发计划
-- [ ] 接入后端（Python Flask / FastAPI 或 Node.js）
-- [ ] 实现文件上传功能
-- [ ] 解析 Minecraft 存档（level.dat / NBT）
-- [ ] 解析 Mod 元数据（fabric.mod.json / mods.toml）
-- [ ] 部署上线（GitHub Pages / Vercel / Netlify）
+## 管理员测试
+1. 创建 admin.key，内容：MC-ADMIN-test-key-2026
+2. 访问 admin-login.html → 上传 → 进入后台
