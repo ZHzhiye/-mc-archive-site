@@ -1,64 +1,132 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>管理员验证 - MC Admin</title><link rel="stylesheet" href="admin/style.css"></head>
-<body style="background:linear-gradient(135deg,#0e1a14,#163a26);min-height:100vh;display:flex;align-items:center;justify-content:center;">
-<div style="width:100%;max-width:420px;padding:1rem;">
-  <div style="background:#fff;border-radius:14px;padding:2rem;box-shadow:0 12px 40px rgba(0,0,0,.2);">
-    <div style="text-align:center;margin-bottom:1.8rem;">
-      <div style="font-size:1.6rem;font-weight:800;color:#2e9e5b;">🛡️ MC Admin</div>
-      <p style="color:#6b7c8f;font-size:.88rem;margin-top:.4rem;">管理员验证</p>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理员验证 - MC Archive</title>
+    <link rel="stylesheet" href="admin/style.css">
+</head>
+<body class="admin-login-body">
+    <div class="admin-login-container">
+        <div class="admin-login-card">
+            <div class="admin-login-header">
+                <span class="admin-logo">🛡️ MC Archive</span>
+                <h1>管理员验证</h1>
+                <p class="admin-login-sub">请上传管理员密钥文件以进入后台</p>
+            </div>
+
+            <div class="admin-login-form">
+                <div class="file-drop-zone" id="dropZone">
+                    <div class="drop-zone-content">
+                        <span class="drop-icon">📎</span>
+                        <p>拖拽密钥文件到此处，或点击选择</p>
+                        <small>需要 <code>admin.key</code> 文件</small>
+                    </div>
+                    <input type="file" id="keyFile" accept=".key" hidden>
+                </div>
+
+                <div class="file-info" id="fileInfo" style="display:none;">
+                    <span class="file-name"></span>
+                    <span class="file-status"></span>
+                </div>
+
+                <button class="admin-btn admin-btn-primary" id="verifyBtn" disabled>
+                    验证并进入
+                </button>
+
+                <div class="admin-login-hint">
+                    <p>🔑 密钥文件说明：</p>
+                    <ul>
+                        <li>文件名必须为 <code>admin.key</code></li>
+                        <li>文件内容需包含管理员令牌</li>
+                        <li>请联系站长获取密钥文件</li>
+                    </ul>
+                </div>
+
+                <div class="admin-login-footer">
+                    <a href="index.html">← 返回用户端</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <p style="color:#2c3e50;font-weight:600;margin-bottom:1.5rem;">请上传管理员密钥文件以进入后台</p>
-    <div id="drop" style="border:2px dashed #c5d4e2;border-radius:10px;padding:2.2rem;text-align:center;cursor:pointer;background:#fafcfe;transition:.2s;margin-bottom:1.2rem;">
-      <div style="font-size:2.4rem;margin-bottom:.5rem;">📎</div>
-      <p style="font-weight:600;">拖拽密钥文件到此处，或点击选择</p>
-      <small style="color:#6b7c8f;">需要 <code style="background:#e8f7ee;color:#2e9e5b;padding:1px 5px;border-radius:3px;">admin.key</code> 文件</small>
-    </div>
-    <input type="file" id="kf" accept=".key" hidden>
-    <div id="fi" style="display:none;background:#f0f7f3;border:1px solid #c8e6d4;border-radius:8px;padding:.8rem 1rem;margin-bottom:1.2rem;justify-content:space-between;align-items:center;">
-      <span id="fn" style="font-weight:600;font-size:.88rem;"></span><span id="fs" style="font-size:.85rem;"></span>
-    </div>
-    <button id="vb" disabled style="width:100%;padding:.85rem;background:#2e9e5b;color:#fff;border:none;border-radius:8px;font-size:1rem;cursor:pointer;margin-bottom:1.4rem;">验证并进入</button>
-    <div style="background:#f8fafc;border:1px solid #e4e9f0;border-radius:10px;padding:1.1rem;margin-bottom:1.4rem;">
-      <p style="font-size:.82rem;font-weight:600;margin-bottom:.5rem;">🔑 密钥文件说明</p>
-      <ul style="list-style:none;font-size:.8rem;color:#6b7c8f;line-height:1.9;">
-        <li>· 文件名必须为 <code>admin.key</code></li>
-        <li>· 文件内容需包含管理员令牌</li>
-        <li>· 请联系站长获取密钥文件</li>
-      </ul>
-    </div>
-    <div style="text-align:center;"><a href="index.html" style="color:#2e9e5b;font-size:.88rem;">← 返回用户端</a></div>
-  </div>
-</div>
-<script>
-var VF='admin.key',VP='MC-ADMIN-';
-var drop=document.getElementById('drop'),kf=document.getElementById('kf'),
-    fi=document.getElementById('fi'),fn=document.getElementById('fn'),
-    fs=document.getElementById('fs'),vb=document.getElementById('vb'),uf=null;
-drop.addEventListener('click',function(){kf.click();});
-drop.addEventListener('dragover',function(e){e.preventDefault();drop.style.borderColor='#2e9e5b';drop.style.background='#e8f7ee';});
-drop.addEventListener('dragleave',function(){drop.style.borderColor='#c5d4e2';drop.style.background='#fafcfe';});
-drop.addEventListener('drop',function(e){e.preventDefault();if(e.dataTransfer.files.length)hf(e.dataTransfer.files[0]);});
-kf.addEventListener('change',function(e){if(e.target.files.length)hf(e.target.files[0]);});
-function hf(file){
-  uf=file;fn.textContent=file.name;
-  if(file.name===VF){fs.textContent='✅ 文件名正确';fs.style.color='#2e9e5b';vb.disabled=false;}
-  else{fs.textContent='❌ 需要 admin.key';fs.style.color='#e74c3c';vb.disabled=true;}
-  fi.style.display='flex';drop.style.display='none';
-}
-vb.addEventListener('click',function(){
-  if(!uf)return;
-  var r=new FileReader();
-  r.onload=function(e){
-    if(e.target.result.trim().indexOf(VP)===0){
-      localStorage.setItem('mc_admin_auth','true');
-      localStorage.setItem('mc_admin_user','admin');
-      localStorage.setItem('mc_admin_login_time',Date.now().toString());
-      location.href='admin/index.html';
-    }else{alert('密钥文件内容无效！\n空壳阶段：文件内容需以 "MC-ADMIN-" 开头');}
-  };
-  r.readAsText(uf);
-});
-if(localStorage.getItem('mc_admin_auth')==='true'){location.href='admin/index.html';}
-</script></body></html>
+
+    <script>
+    // 空壳验证逻辑
+    const VALID_FILENAME = 'admin.key';
+    const VALID_CONTENT_PREFIX = 'MC-ADMIN-'; // 空壳阶段：文件内容以这个开头就算通过
+
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('keyFile');
+    const fileInfo = document.getElementById('fileInfo');
+    const verifyBtn = document.getElementById('verifyBtn');
+    const fileNameSpan = fileInfo.querySelector('.file-name');
+    const fileStatusSpan = fileInfo.querySelector('.file-status');
+
+    let uploadedFile = null;
+
+    // 点击选择文件
+    dropZone.addEventListener('click', () => fileInput.click());
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('drag-over');
+    });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('drag-over');
+        if (e.dataTransfer.files.length > 0) {
+            handleFile(e.dataTransfer.files[0]);
+        }
+    });
+    fileInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) handleFile(e.target.files[0]);
+    });
+
+    function handleFile(file) {
+        uploadedFile = file;
+        fileNameSpan.textContent = file.name;
+
+        // 空壳校验：检查文件名
+        if (file.name === VALID_FILENAME) {
+            fileStatusSpan.textContent = '✅ 文件名正确';
+            fileStatusSpan.className = 'file-status ok';
+            verifyBtn.disabled = false;
+        } else {
+            fileStatusSpan.textContent = '❌ 文件名不正确（需要 admin.key）';
+            fileStatusSpan.className = 'file-status error';
+            verifyBtn.disabled = true;
+        }
+
+        fileInfo.style.display = 'flex';
+        dropZone.style.display = 'none';
+    }
+
+    // 验证按钮
+    verifyBtn.addEventListener('click', () => {
+        if (!uploadedFile) return;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const content = e.target.result;
+
+            // 空壳阶段：检查文件内容前缀
+            if (content.trim().startsWith(VALID_CONTENT_PREFIX)) {
+                // 验证通过 → 存标记 → 跳转
+                localStorage.setItem('mc_admin_auth', 'true');
+                localStorage.setItem('mc_admin_user', 'admin');
+                localStorage.setItem('mc_admin_login_time', Date.now().toString());
+                window.location.href = 'admin/index.html';
+            } else {
+                alert('密钥文件内容无效！\n空壳阶段：文件内容需以 "MC-ADMIN-" 开头\n\n（正式版将对接后端验证）');
+            }
+        };
+        reader.readAsText(uploadedFile);
+    });
+
+    // 已有登录状态直接跳转
+    if (localStorage.getItem('mc_admin_auth') === 'true') {
+        window.location.href = 'admin/index.html';
+    }
+    </script>
+</body>
+</html>

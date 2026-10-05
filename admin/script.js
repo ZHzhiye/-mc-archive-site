@@ -1,14 +1,24 @@
-(function(){
-  if(localStorage.getItem('mc_admin_auth')!=='true'){window.location.href='../admin-login.html';}
+// 权限检查：每个管理页面加载时执行
+(function checkAuth() {
+    const isAuth = localStorage.getItem('mc_admin_auth');
+    if (isAuth !== 'true') {
+        window.location.href = '../admin-login.html';
+    }
 })();
-document.addEventListener('DOMContentLoaded',function(){
-  var u=localStorage.getItem('mc_admin_user')||'admin';
-  var us=document.getElementById('au'); if(us) us.textContent='@'+u;
-  var av=document.getElementById('av'); if(av) av.textContent=u.charAt(0).toUpperCase();
+
+// 显示管理员信息
+document.addEventListener('DOMContentLoaded', function() {
+    const adminUser = localStorage.getItem('mc_admin_user') || 'admin';
+    const userSpan = document.getElementById('adminUser');
+    if (userSpan) {
+        userSpan.textContent = '👤 ' + adminUser;
+    }
 });
-function logout(){
-  localStorage.removeItem('mc_admin_auth');
-  localStorage.removeItem('mc_admin_user');
-  localStorage.removeItem('mc_admin_login_time');
-  window.location.href='../admin-login.html';
+
+// 退出登录
+function logout() {
+    localStorage.removeItem('mc_admin_auth');
+    localStorage.removeItem('mc_admin_user');
+    localStorage.removeItem('mc_admin_login_time');
+    window.location.href = '../admin-login.html';
 }

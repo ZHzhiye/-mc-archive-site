@@ -1,32 +1,78 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>设置 - MC Admin</title><link rel="stylesheet" href="style.css"></head>
-<body>
-<aside class="sidebar">
-  <div class="side-logo"><b>🛡️ MC Admin</b><small>资料管理平台</small></div>
-  <nav class="side-nav"><a href="index.html" class>📊 仪表盘</a>
-  <a href="worlds.html" class>🌍 存档管理</a>
-  <a href="mods.html" class>🔧 Mod管理</a>
-  <a href="users.html" class>👥 用户管理</a>
-  <a href="reviews.html" class>📋 审核队列</a>
-  <a href="settings.html" class active>⚙️ 设置</a></nav>
-  <div class="side-foot"><span id="au">@admin</span><button class="btn-out" onclick="logout()">退出</button></div>
-</aside>
-<main class="main">
-  <header class="mhead"><h1>设置</h1><span class="badge">空壳 v0.1</span></header>
-  <div class="content">
-<div class="card"><h3>🏷️ 基本信息</h3>
-  <div class="sgroup"><label>站点名称</label><input type="text" value="MC Archive"></div>
-  <div class="sgroup"><label>站点描述</label><input type="text" value="Minecraft 存档与 Mod 分享平台"></div>
-  <button class="btn">保存设置</button>
-</div>
-<div class="card danger"><h3>⚠️ 危险区域</h3>
-  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
-    <div><b>清空所有数据</b><p style="color:#a0a0a0;font-size:.82rem;">删除所有存档、Mod 和用户信息，不可恢复</p></div>
-    <button class="btn" style="background:#e74c3c;">清空数据</button>
-  </div>
-</div>
-</div>
-</main>
-<script src="script.js"></script></body></html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设置 - MC Archive</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-body">
+    <div class="admin-layout">
+        <!-- 侧边栏 -->
+        <aside class="admin-sidebar">
+            <div class="admin-sidebar-logo">
+                🛡️ MC Admin
+            </div>
+            <nav class="admin-nav">
+                <a href="index.html" class="admin-nav-item">📊 仪表盘</a>
+                <a href="worlds.html" class="admin-nav-item">🌍 存档管理</a>
+                <a href="mods.html" class="admin-nav-item">🔧 Mod 管理</a>
+                <a href="users.html" class="admin-nav-item">👥 用户管理</a>
+                <a href="reviews.html" class="admin-nav-item">📋 审核队列</a>
+                <a href="settings.html" class="admin-nav-item active">⚙️ 设置</a>
+            </nav>
+            <div class="admin-sidebar-footer">
+                <span id="adminUser"></span>
+                <button class="admin-btn-sm" onclick="logout()">退出</button>
+            </div>
+        </aside>
+
+        <!-- 主内容 -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <h1>设置</h1>
+                <div class="admin-header-actions">
+                    <span class="admin-badge">空壳演示 v0.1</span>
+                </div>
+            </header>
+            <div class="admin-page-padding">
+                <div class="admin-panel">
+                    <div class="admin-panel-header">
+                        <h3>站点设置</h3>
+                    </div>
+                    <div style="padding:1.5rem;">
+                        <div style="margin-bottom:1.5rem;">
+                            <label style="display:block; color:#888; margin-bottom:0.5rem; font-size:0.85rem;">站点名称</label>
+                            <input type="text" value="MC Archive" style="width:100%; padding:0.6rem; background:#252840; border:1px solid #2a2d4a; border-radius:4px; color:#e0e0e0;">
+                        </div>
+                        <div style="margin-bottom:1.5rem;">
+                            <label style="display:block; color:#888; margin-bottom:0.5rem; font-size:0.85rem;">站点描述</label>
+                            <input type="text" value="Minecraft 存档与 Mod 分享平台" style="width:100%; padding:0.6rem; background:#252840; border:1px solid #2a2d4a; border-radius:4px; color:#e0e0e0;">
+                        </div>
+                        <div style="margin-bottom:1.5rem;">
+                            <label style="display:block; color:#888; margin-bottom:0.5rem; font-size:0.85rem;">允许上传的文件类型</label>
+                            <input type="text" value=".zip, .mcworld, .jar" style="width:100%; padding:0.6rem; background:#252840; border:1px solid #2a2d4a; border-radius:4px; color:#e0e0e0;">
+                        </div>
+                        <div style="margin-bottom:1.5rem;">
+                            <label style="display:block; color:#888; margin-bottom:0.5rem; font-size:0.85rem;">最大上传大小 (MB)</label>
+                            <input type="number" value="500" style="width:100%; padding:0.6rem; background:#252840; border:1px solid #2a2d4a; border-radius:4px; color:#e0e0e0;">
+                        </div>
+                        <button class="admin-btn admin-btn-primary" style="width:auto; padding:0.6rem 2rem;">保存设置</button>
+                        <p style="color:#666; font-size:0.8rem; margin-top:1rem;">⚠️ 空壳阶段：设置不会实际生效，仅做界面展示</p>
+                    </div>
+                </div>
+                <div class="admin-panel" style="margin-top:1.5rem;">
+                    <div class="admin-panel-header">
+                        <h3>危险区域</h3>
+                    </div>
+                    <div style="padding:1.5rem;">
+                        <button style="padding:0.6rem 1.5rem; background:#d32f2f; color:white; border:none; border-radius:4px; cursor:pointer;">清空所有数据</button>
+                        <p style="color:#666; font-size:0.8rem; margin-top:0.5rem;">此操作不可恢复（空壳阶段无效）</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

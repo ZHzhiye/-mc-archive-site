@@ -1,30 +1,52 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>仪表盘 - MC Archive</title><link rel="stylesheet" href="style.css"></head>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MC Archive - Minecraft 存档与 Mod 分享</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
-<aside class="sidebar">
-  <div class="side-logo"><b>⛏️ MC Archive</b><small>Minecraft 资料库</small></div>
-  <nav class="side-nav"><a href="index.html" class active>🏠 首页</a>
-  <a href="worlds.html" class>🌍 存档库</a>
-  <a href="mods.html" class>🔧 Mod库</a>
-  <a href="upload.html" class>⬆️ 上传</a>
-  <a href="rules.html" class>📏 规范</a>
-  <a href="terms.html" class>🎮 术语</a>
-  <a href="news.html" class>📰 动态</a>
-  <a href="about.html" class>ℹ️ 关于</a></nav>
-  <div class="side-foot"><span>v0.1 空壳</span><a href="admin-login.html" style="color:#e74c3c;font-size:.8rem;">🔐 管理</a></div>
-</aside>
-<main class="main">
-  <header class="mhead"><h1>仪表盘</h1><span class="badge">空壳演示</span></header>
-  <div class="content">
-<div class="stats">
-  <div class="scard"><div class="sic">🌍</div><div><div class="snum">0</div><div class="slabel">存档总数</div></div></div>
-  <div class="scard"><div class="sic">🔧</div><div><div class="snum">0</div><div class="slabel">Mod 总数</div></div></div>
-  <div class="scard"><div class="sic">👥</div><div><div class="snum">1</div><div class="slabel">注册用户</div></div></div>
-  <div class="scard"><div class="sic">⏳</div><div><div class="snum">0</div><div class="slabel">待审核</div></div></div>
-</div>
-<div class="card"><h3>📥 最近上传</h3><div class="empty"><div class="ic">📭</div><p>暂无上传记录</p></div></div>
-<div class="card"><h3>📰 最新动态</h3><div class="empty"><div class="ic">📭</div><p>更多动态敬请期待</p></div></div>
-</div>
-</main></body></html>
+    <header>
+        <div class="logo">⛏️ MC Archive</div>
+        <nav>
+            <a href="index.html">首页</a>
+            <a href="browse.html">浏览</a>
+            <a href="upload.html">上传</a>
+            <a href="#">登录</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>分享你的 Minecraft 世界与 Mod</h1>
+            <p>上传存档、分享 Mod、查看游戏数据 —— 完全免费，自主搭建</p>
+            <div class="hero-buttons">
+                <a href="browse.html" class="btn">浏览内容</a>
+                <a href="upload.html" class="btn btn-outline">立即上传</a>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <h3>📁 存档分享</h3>
+                <p>上传你的 Java/基岩版存档，自动解析种子、坐标、游戏模式。</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔧 Mod 库</h3>
+                <p>分享 Fabric/Forge/NeoForge Mod，自动读取版本依赖。</p>
+            </div>
+            <div class="feature-card">
+                <h3>📊 数据读取</h3>
+                <p>在线查看 level.dat、玩家数据、区块信息，无需启动游戏。</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 MC Archive | 自主开发项目</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
